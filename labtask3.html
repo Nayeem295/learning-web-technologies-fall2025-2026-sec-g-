@@ -1,0 +1,114 @@
+<html>
+<head>
+  <title>JavaScript Calculator</title>
+  <style>
+    .calculator {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      max-width: 300px;
+      margin: auto;
+    }
+    .calculator input {
+      grid-column: span 4;
+      padding: 10px;
+      font-size: 20px;
+      text-align: right;
+    }
+    .calculator button {
+      padding: 20px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="calculator" class="calculator"></div>
+  
+  <script>
+    const calculator = document.getElementById('calculator');
+    let currentInput = '';
+    let prevInput = '';
+    let currentOperator = '';
+
+    const inputScreen = document.createElement('input');
+    inputScreen.type = 'text';
+    inputScreen.disabled = true;
+    inputScreen.value = currentInput;
+    calculator.appendChild(inputScreen);
+
+    const buttons = [
+      '7', '8', '9', '/',
+      '4', '5', '6', '*',
+      '1', '2', '3', '-',
+      '0', '.', '=', '+',
+      'C', 'CC'
+    ];
+
+    buttons.forEach(button => {
+      const buttonElement = document.createElement('button');
+      buttonElement.textContent = button;
+      buttonElement.addEventListener('click', () => handleButtonClick(button));
+      calculator.appendChild(buttonElement);
+    });
+
+    function handleButtonClick(button) {
+      if (button === 'CC') {
+        currentInput = '';
+        prevInput = '';
+        currentOperator = '';
+      } else if (button === 'C') {
+        currentInput = currentInput.slice(0, -1);
+      } else if (button === '=') {
+        handleCalculation();
+      } else if (['+', '-', '*', '/'].includes(button)) {
+        handleOperatorClick(button);
+      } else {
+        currentInput += button;
+      }
+
+      inputScreen.value = currentInput;
+    }
+
+    function handleOperatorClick(operator) {
+      if (prevInput !== '') {
+        handleCalculation();
+      }
+
+      currentOperator = operator;
+      prevInput = currentInput;
+      currentInput = '';
+    }
+
+    function handleCalculation() {
+      let result;
+
+      if (prevInput === '' || currentInput === '') return;
+
+      const num1 = parseFloat(prevInput);
+      const num2 = parseFloat(currentInput);
+
+      if (currentOperator === '+') {
+        result = num1 + num2;
+      } else if (currentOperator === '-') {
+        result = num1 - num2;
+      } else if (currentOperator === '*') {
+        result = num1 * num2;
+      } else if (currentOperator === '/') {
+        if (num2 === 0) {
+          result = 'Error';
+        } else {
+          result = num1 / num2;
+        }
+      }
+
+      currentInput = result.toString();
+      prevInput = '';
+      currentOperator = '';
+      inputScreen.value = currentInput;
+    }
+
+  </script>
+</body>
+</html>
+
