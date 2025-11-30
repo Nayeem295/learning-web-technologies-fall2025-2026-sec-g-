@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Input beside Username</title>
+    <script>
+        window.onload = function () {
+            createPage();
+        };
+
+        function createPage() {
+            const body = document.body;
+
+            const header = document.createElement("h2");
+            header.innerText = "Dynamic Input beside Username";
+            body.appendChild(header);
+
+            // Username Label
+            const label = document.createElement("label");
+            label.innerText = "Username: ";
+            body.appendChild(label);
+
+            // Dropdown beside Username
+            const dropdown = document.createElement("select");
+            dropdown.id = "inputType";
+            dropdown.addEventListener("change", createInputField);
+
+            const optDefault = document.createElement("option");
+            optDefault.value = "";
+            optDefault.innerText = "Select Input Type";
+            dropdown.appendChild(optDefault);
+
+            const optText = document.createElement("option");
+            optText.value = "text";
+            optText.innerText = "Text";
+            dropdown.appendChild(optText);
+
+            const optNum = document.createElement("option");
+            optNum.value = "number";
+            optNum.innerText = "Number";
+            dropdown.appendChild(optNum);
+
+            const optEmail = document.createElement("option");
+            optEmail.value = "email";
+            optEmail.innerText = "Email";
+            dropdown.appendChild(optEmail);
+
+            body.appendChild(dropdown);
+
+            // Dynamic Input Field Container
+            const inputBox = document.createElement("span");
+            inputBox.id = "dynamicField";
+            inputBox.style.marginLeft = "10px";
+            body.appendChild(inputBox);
+
+            // Save Button
+            const saveBtn = document.createElement("button");
+            saveBtn.innerText = "Save";
+            saveBtn.style.marginLeft = "15px";
+            saveBtn.addEventListener("click", saveData);
+            body.appendChild(saveBtn);
+
+            // Saved Result Section
+            const savedSection = document.createElement("div");
+            savedSection.id = "savedResult";
+            savedSection.style.marginTop = "20px";
+            savedSection.innerHTML = "<h3>Saved Page:</h3>";
+            body.appendChild(savedSection);
+        }
+
+
+        function createInputField() {
+            const type = document.getElementById("inputType").value;
+            const container = document.getElementById("dynamicField");
+
+            container.innerHTML = "";
+
+            if (type !== "") {
+                const input = document.createElement("input");
+                input.type = type;
+                input.id = "dynamicInput";
+                input.placeholder = "Enter " + type;
+                container.appendChild(input);
+            }
+        }
+
+        function saveData() {
+            const dynamicInput = document.getElementById("dynamicInput");
+            const type = document.getElementById("inputType").value;
+
+            if (!dynamicInput || dynamicInput.value.trim() === "") {
+                alert("Please enter value.");
+                return;
+            }
+
+            const savedSection = document.getElementById("savedResult");
+
+            const p = document.createElement("p");
+            p.innerText = "Saved (" + type + "): " + dynamicInput.value;
+            savedSection.appendChild(p);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
