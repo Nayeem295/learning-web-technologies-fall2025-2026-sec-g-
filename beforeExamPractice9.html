@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Product Display Section for Online Store">
+    <title>Online Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product-box {
+            display: inline-block;
+            width: 280px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .product-box:hover {
+            outline: 3px solid #333;
+            outline-offset: 10px;
+        }
+
+        .product-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .product-box h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .product-box p {
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        .product-box a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .product-box a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Our Products</h1>
+
+    <div class="product-container">
+        <div class="product-box">
+            <img src="laptop.jpg" alt="Laptop">
+            <h3>Laptop</h3>
+            <p>Powerful laptop with 16GB RAM, 512GB SSD, and a 15-inch screen.</p>
+            <p><strong>$899</strong></p>
+            <a href="#">Buy Now</a>
+        </div>
+
+        <div class="product-box">
+            <img src="headphones.jpg" alt="Headphones">
+            <h3>Headphones</h3>
+            <p>Wireless headphones with noise-canceling technology and 20-hour battery life.</p>
+            <p><strong>$199</strong></p>
+            <a href="#">Buy Now</a>
+        </div>
+
+        <div class="product-box">
+            <img src="smartwatch.jpg" alt="Smartwatch">
+            <h3>Smartwatch</h3>
+            <p>Smartwatch with fitness tracking, heart rate monitor, and 2-day battery life.</p>
+            <p><strong>$149</strong></p>
+            <a href="#">Buy Now</a>
+        </div>
+    </div>
+
+</body>
+</html>
